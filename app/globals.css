@@ -1,0 +1,19 @@
+
+/* Mobile touch improvements */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Pin button always visible on touch devices */
+@media (hover: none) {
+  .pin-btn {
+    opacity: 1 !important;
+  }
+}
+
+/* Safe area for mobile home bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
