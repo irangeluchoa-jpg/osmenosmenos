@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #000000;
+  --foreground: #c0c0c0;
+  --card: #0a0a0a;
+  --card-foreground: #c0c0c0;
+  --popover: #0a0a0a;
+  --popover-foreground: #c0c0c0;
+  --primary: #D1FF00;
+  --primary-foreground: #000000;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #c0c0c0;
+  --muted: #111111;
+  --muted-foreground: #666666;
+  --accent: #D1FF00;
+  --accent-foreground: #000000;
+  --destructive: #ff2020;
+  --destructive-foreground: #ff2020;
+  --border: rgba(255,255,255,0.1);
+  --input: rgba(255,255,255,0.08);
+  --ring: #D1FF00;
+  --chart-1: #D1FF00;
+  --chart-2: #00ff88;
+  --chart-3: #c0c0c0;
+  --chart-4: #ff2020;
+  --chart-5: #666666;
+  --radius: 0px;
+  --neon: #D1FF00;
+  --chrome: #c0c0c0;
+  --danger: #ff2020;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #c0c0c0;
+  --sidebar-primary: #D1FF00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #c0c0c0;
+  --sidebar-border: rgba(255,255,255,0.1);
+  --sidebar-ring: #D1FF00;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), 'Geist Fallback', sans-serif;
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-neon: var(--neon);
+  --color-chrome: var(--chrome);
+  --color-danger: var(--danger);
+  --radius-sm: calc(var(--radius));
+  --radius-md: calc(var(--radius));
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius));
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Neon glow */
+.neon-glow {
+  box-shadow: 0 0 8px rgba(209, 255, 0, 0.3), 0 0 20px rgba(209, 255, 0, 0.1);
+}
+
+.neon-text {
+  text-shadow: 0 0 8px rgba(209, 255, 0, 0.5);
+}
+
+/* Scanline effect */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 4px
+  );
+  pointer-events: none;
+}
+
+/* Glassmorphism controls */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollbar styling */
+.tactical-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.tactical-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tactical-scroll::-webkit-scrollbar-thumb {
+  background: rgba(209, 255, 0, 0.2);
+}
+
+/* Gain bar animation */
+@keyframes gain-pulse {
+  0%, 100% { height: 20%; }
+  50% { height: 80%; }
+}
+
+/* Telemetry flash */
+@keyframes telemetry-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Mobile touch improvements */
+@media (max-width: 640px) {
+  .glass {
+    backdrop-filter: blur(8px);
+  }
+
+  /* Larger touch targets on mobile */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Pin button visible on touch devices */
+@media (hover: none) {
+  button[aria-label="Fixar"],
+  button[aria-label="Desafixar"] {
+    opacity: 1 !important;
+  }
+}
+
+/* Safe area for mobile notch/home bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
